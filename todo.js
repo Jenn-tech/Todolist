@@ -23,7 +23,20 @@ function todoMain(){
         inputElem.value = "";
         
         let liElem = document.createElement("li");
-        liElem.innerText = inputValue;
+        liElem.innerText = inputValue ;
+        
+        let spanElem = document.createElement("span");
+        spanElem.innerText = "remove_circle_outline";
+        spanElem.className = "material-icons"
+
+        liElem.addEventListener("click", deleteItem, false);
+
+        liElem.appendChild(spanElem);
+
         ulElem.appendChild(liElem);
+
+        function deleteItem(){
+            liElem.remove();
+        }
     }
 }
