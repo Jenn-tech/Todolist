@@ -1,4 +1,10 @@
 /*input이 check될 때 span부분 css*/
-input:checked + span{
+.strike{
     text-decoration: line-through;
+}
+
+/* table css*/
+td{
+    border: 1px solid black;
+    padding : 5px;
 }
