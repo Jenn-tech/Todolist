@@ -16,6 +16,7 @@ function todoMain(){
     }
 
     function onChange(event){
+        let flag = true;
         
         let inputValue = inputElem.value;
 
@@ -23,13 +24,23 @@ function todoMain(){
         inputElem.value = "";
         
         let liElem = document.createElement("li");
-        liElem.innerText = inputValue ;
+
+        let checkboxElem = document.createElement("input");
+        checkboxElem.type = "checkbox";
+        liElem.appendChild(checkboxElem);
+
+        let textElem = document.createElement("span");
+        textElem.innerText = inputValue;
+        liElem.appendChild(textElem);
+
+        //liElem.innerText = inputValue ;
+        //liElem.addEventListener("click", onClick, false);
         
         let spanElem = document.createElement("span");
         spanElem.innerText = "remove_circle_outline";
         spanElem.className = "material-icons"
 
-        liElem.addEventListener("click", deleteItem, false);
+        spanElem.addEventListener("click", deleteItem, false);
 
         liElem.appendChild(spanElem);
 
@@ -38,5 +49,22 @@ function todoMain(){
         function deleteItem(){
             liElem.remove();
         }
+
+        
+        function onClick(){
+            if(flag){
+              //this.style.textDecoration = "line-through";
+              this.classList.add("strike");
+              flag = !flag;
+            }else{
+              //this.style.textDecoration = "none";
+              this.classList.remove("strike");
+              flag = !flag;
+            }
+            
+          }
+
+
+
     }
 }

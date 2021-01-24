@@ -1,0 +1,4 @@
+/*input이 check될 때 span부분 css*/
+input:checked + span{
+    text-decoration: line-through;
+}
