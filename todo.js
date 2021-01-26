@@ -1,6 +1,8 @@
 todoMain();
 
 function todoMain(){
+    const DEFAULT_OPTION = "Category"; 
+
     let inputElem,
         inputElem2,
         button,
@@ -63,8 +65,12 @@ function todoMain(){
         tdElem4.appendChild(spanElem);
         trElem.appendChild(tdElem4);
 
+     
+        updateSelectOptions();
+
         function deleteItem(){
             trElem.remove();
+            updateSelectOptions();
          }
 
 
@@ -77,7 +83,7 @@ function todoMain(){
         function filterEntries(){
             let selection = selectElem.value;
 
-            if(selection =="total"){
+            if(selection ==DEFAULT_OPTION){
                 
                 let rows = document.getElementsByTagName("tr");
                 
@@ -96,16 +102,55 @@ function todoMain(){
                     }
                     let category = row.getElementsByTagName("td")[2].innerText;
                     if(category == selectElem.value ){
-                                row.style.display = "";
-                            }else{
-                                row.style.display = "none";
-                            }
-            
+                        row.style.display = "";
+                    }else{
+                        row.style.display = "none";
+                    }
+                    
                 });
             }
-
             
+            
+            
+            
+        }
+        function updateSelectOptions(){
+            let options = [];
+
+            let rows = document.getElementsByTagName("tr");
+
+            Array.from(rows).forEach((row, index)=>{
+                if(index==0){
+                    return;
+                }
+            let category = row.getElementsByTagName("td")[2].innerText;
+        
+           // if(!options.includes(category)){
+                options.push(category);
+
+           // }
+                
+            });
+            let optionSet = new Set(options);
 
 
+            //empty the select options
+            selectElem.innerHTML = "";
+
+            let newOptionElem = document.createElement('option');
+            newOptionElem.value = DEFAULT_OPTION;
+            newOptionElem.innerText= DEFAULT_OPTION;
+            selectElem.appendChild(newOptionElem);
+    
+
+
+            for(let option of optionSet){
+
+                let newOptionElem = document.createElement('option');
+                newOptionElem.value = option;
+                newOptionElem.innerText= option;
+                selectElem.appendChild(newOptionElem);
+        
+            }
         }
 }

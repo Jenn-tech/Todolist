@@ -6,6 +6,7 @@
 - [3. Done Marking](#3-done-marking)
 - [4. Category](#4-category)
 - [5. Filter by category](#5-filter-by-category)
+- [6. Auto-update Options](#6-auto-update-options)
 
 # 1. Adding Entries
 - change Event Listener
@@ -165,4 +166,45 @@ checkboxElem.addEventListener("click", done, false);
                 });
             }
         }
+```
+
+# 6. Auto-update Options
+- add option
+```javascript
+let newOptionElem = document.createElement('option');
+                newOptionElem.value = option;
+                newOptionElem.innerText= option;
+                selectElem.appendChild(newOptionElem);
+```
+- Array push()
+- Array incudes()
+  - if you add a category with the same name as it was originally
+```javascript
+  if(!options.includes(category)){
+                options.push(category);
+
+            }
+```
+
+- new Set()
+  - not allows duplicate 
+  - faster than using includes (running just one)
+```javascript
+    let optionSet = new Set(options);
+```
+- for of loop
+```javascript
+            for(let option of optionSet){
+
+                let newOptionElem = document.createElement('option');
+                newOptionElem.value = option;
+                newOptionElem.innerText= option;
+                selectElem.appendChild(newOptionElem);
+        
+            }
+```
+- const
+```javascript
+    const DEFAULT_OPTION = "Category"; 
+
 ```
