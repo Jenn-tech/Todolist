@@ -5,6 +5,7 @@
 - [2. Deleting Entries](#2-deleting-entries)
 - [3. Done Marking](#3-done-marking)
 - [4. Category](#4-category)
+- [5. Filter by category](#5-filter-by-category)
 
 # 1. Adding Entries
 - change Event Listener
@@ -102,4 +103,66 @@ checkboxElem.addEventListener("click", done, false);
         <option value="Personal"></option>
         <option value="work"></option>
     </datalist>
+```
+
+
+# 5. Filter by category
+- `<select>`
+```html
+                <select id="categoryFilter">
+                    <option value = "Personal">Personal</option>
+                    <option value = "Work">Work</option>
+                </select>
+```
+- Element.style.display
+```javascript
+       function filterEntries(){
+            let rows = document.getElementsByTagName("tr");
+            
+            for (let i = 1; i <rows.length; i++){
+                let category = rows[i].getElementsByTagName("td")[2].innerText;
+                if(category == selectElem.value ){
+                    rows[i].style.display = "";
+                }else{
+                    rows[i].style.display = "none";
+                }
+
+
+            }
+            
+            
+        }
+```
+- Es6 Array.from()
+- Es6 Array.prototype.forEach()
+```javascript
+        function filterEntries(){
+            let selection = selectElem.value;
+
+            if(selection =="total"){
+                
+                let rows = document.getElementsByTagName("tr");
+                
+                Array.from(rows).forEach((row, index)=>{
+                   
+                 row.style.display = "";
+                           
+                });
+            }else{
+
+                let rows = document.getElementsByTagName("tr");
+                
+                Array.from(rows).forEach((row, index)=>{
+                    if(index==0){
+                        return;
+                    }
+                    let category = row.getElementsByTagName("td")[2].innerText;
+                    if(category == selectElem.value ){
+                                row.style.display = "";
+                            }else{
+                                row.style.display = "none";
+                            }
+                });
+            }
+        }
 ```

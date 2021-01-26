@@ -13,7 +13,7 @@
     <p><input type = "text" placeholder="카테고리 입력" list = "categoryList"></p>
     <datalist id = "categoryList">
         <option value="Personal"></option>
-        <option value="work"></option>
+        <option value="Work"></option>
     </datalist>
     <button id ="addBtn">Add</button>
     <ul></ul>
@@ -21,7 +21,13 @@
         <tr>
             <td>checkbox</td>
             <td>to-do</td>
-            <td>category</td>
+            <td>
+                <select id="categoryFilter">
+                    <option value ="total">Total</option>
+                    <option value = "Personal">Personal</option>
+                    <option value = "Work">Work</option>
+                </select>
+            </td>
             <td>delete</td>
         </tr>
 
