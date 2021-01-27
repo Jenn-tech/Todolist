@@ -7,6 +7,7 @@
 - [4. Category](#4-category)
 - [5. Filter by category](#5-filter-by-category)
 - [6. Auto-update Options](#6-auto-update-options)
+- [7. localStorage](#7-localstorage)
 
 # 1. Adding Entries
 - change Event Listener
@@ -207,4 +208,42 @@ let newOptionElem = document.createElement('option');
 ```javascript
     const DEFAULT_OPTION = "Category"; 
 
+```
+
+# 7. localStorage
+- localStorage.setItem()
+```javascript
+    function save(){
+        localStorage.setItem("todoList", todoList);
+    }
+```
+- localStorage.getItem()
+- JSON.stringify()
+```javascript
+   function save(){
+        let stringified = JSON.stringify(todoList);
+        localStorage.setItem("todoList", stringified);
+    }
+
+    function load(){
+        
+        todoList = localStorage.getItem("todoList");
+        console.log(typeof todoList);
+        if(todoList ==null)
+            todoList = [];
+    
+    }
+```
+- JSON.parse()
+```javascript
+
+    function load(){
+        
+        let retrieved = localStorage.getItem("todoList");
+        todoList = JSON.parse(retrieved);
+        console.log(typeof todoList);
+        if(todoList ==null)
+            todoList = [];
+    
+    }
 ```
