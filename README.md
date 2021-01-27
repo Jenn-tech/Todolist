@@ -8,6 +8,7 @@
 - [5. Filter by category](#5-filter-by-category)
 - [6. Auto-update Options](#6-auto-update-options)
 - [7. localStorage](#7-localstorage)
+- [8. Object](#8-object)
 
 # 1. Adding Entries
 - change Event Listener
@@ -247,3 +248,49 @@ let newOptionElem = document.createElement('option');
     
     }
 ```
+
+# 8. Object
+- object.key VS object["key"]
+  - push
+```javascript
+        todoList.push({
+            todo: inputValue,
+            category: inputValue2,
+        });
+```
+  - .key
+```javascript
+   function renderRows(){
+        todoList.forEach(todoObj => {
+            
+
+            let todoEntry = todoObj.todo;
+            let todoCategory = todoObj.category;
+            renderRow(todoEntry, todoCategory);
+        })
+    }
+```
+  - ["key"]
+```javascript
+    function renderRows(){
+        todoList.forEach(todoObj => {
+            let todoEntry = todoObj["todo"];
+            let key = "category";
+            let todoCategory = todoObj[key];
+            renderRow(todoEntry, todoCategory);
+        })
+    }
+```
+
+
+- for in loop
+```javascript
+ function renderRows(){
+        todoList.forEach(todoObj => {
+            for (let keys in todoObj){
+                console.log(`${keys} -> ${todoObj[keys]}`)
+            }
+...
+```
+- array is object in JS
+- object destructuring

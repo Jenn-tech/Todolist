@@ -15,6 +15,7 @@ function todoMain(){
     addListeners();
     load();
     renderRows();
+    updateSelectOptions();
 
     function getElements(){
         inputElem = document.getElementsByTagName("input")[0];
@@ -35,12 +36,16 @@ function todoMain(){
         
         let inputValue2 = inputElem2.value;
         inputElem2.value = "";
-
-        renderRow(inputValue, inputValue2);
         
+        let obj = {
+            todo: inputValue,
+            category: inputValue2,
 
+        }
 
-        todoList.push(inputValue);
+        renderRow(obj);
+
+        todoList.push(obj);
         save();
      
         updateSelectOptions();
@@ -132,19 +137,29 @@ function todoMain(){
         
         let retrieved = localStorage.getItem("todoList");
         todoList = JSON.parse(retrieved);
-        console.log(typeof todoList);
         if(todoList ==null)
             todoList = [];
     
     }
 
     function renderRows(){
-        todoList.forEach(todo => {
-            renderRow(todo,null);
+        todoList.forEach(todoObj => {
+           
+
+          //  let todoEntry = todoObj["todo"];
+          //  let key = "category";
+          //  let todoCategory = todoObj[key];
+            renderRow(todoObj);
         })
     }
 
-    function renderRow(inputValue, inputValue2){
+    function renderRow({todo: inputValue, category: inputValue2}){
+
+      //  let inputValue = obj.todo;
+      //  let inputValue2 = obj.category;
+
+       // let {todo: inputValue, category: inputValue2} = obj;
+
         //add a new row
          
         let table = document.getElementById("todoTable");
