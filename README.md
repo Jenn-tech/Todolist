@@ -218,6 +218,7 @@ let newOptionElem = document.createElement('option');
         localStorage.setItem("todoList", todoList);
     }
 ```
+
 - localStorage.getItem()
 - JSON.stringify()
 ```javascript
